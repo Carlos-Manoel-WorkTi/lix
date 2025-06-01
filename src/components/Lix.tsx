@@ -124,9 +124,9 @@ const Lix: React.FC<LixProps> = ({ message, onMessageComplete }) => {
 
   return (
     <div className="relative flex flex-col items-center">
-      {/* Balão de fala - Melhorado para mobile */}
+      {/* Balão de fala - Posição fixa, não move com a Lix */}
       {showMessage && message && (
-        <div className="absolute -top-12 sm:-top-16 left-1/2 transform -translate-x-1/2 bg-white border-2 border-pink-300 rounded-2xl p-2 sm:p-3 shadow-xl animate-bounce z-10 max-w-[280px] sm:max-w-xs">
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-white border-2 border-pink-300 rounded-2xl p-2 sm:p-3 shadow-xl z-50 max-w-[280px] sm:max-w-xs">
           <div className="text-xs sm:text-sm text-gray-700 text-center leading-tight">
             {message}
           </div>
@@ -136,13 +136,13 @@ const Lix: React.FC<LixProps> = ({ message, onMessageComplete }) => {
         </div>
       )}
 
-      {/* Efeitos decorativos flutuantes - Responsivos */}
+      {/* Efeitos decorativos flutuantes */}
       <div className="absolute -top-2 sm:-top-4 -left-2 sm:-left-4 w-4 h-4 sm:w-8 sm:h-8 bg-yellow-300 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0s' }}></div>
       <div className="absolute -top-1 sm:-top-2 -right-3 sm:-right-6 w-3 h-3 sm:w-6 sm:h-6 bg-pink-300 rounded-full animate-pulse opacity-60" style={{ animationDelay: '0.5s' }}></div>
       <div className="absolute -bottom-1 sm:-bottom-2 -left-3 sm:-left-6 w-2 h-2 sm:w-4 sm:h-4 bg-purple-300 rounded-full animate-ping opacity-60" style={{ animationDelay: '1s' }}></div>
       <div className="absolute top-4 sm:top-8 -right-1 sm:-right-2 w-3 h-3 sm:w-5 sm:h-5 bg-blue-300 rounded-full animate-bounce opacity-50" style={{ animationDelay: '1.5s' }}></div>
 
-      {/* Corpo da Lix - Mais redondo e sem braços/pernas */}
+      {/* Corpo da Lix */}
       <div 
         onClick={handleLixClick}
         className={cn(
@@ -160,11 +160,11 @@ const Lix: React.FC<LixProps> = ({ message, onMessageComplete }) => {
         {/* Brilho interno */}
         <div className="absolute inset-2 bg-gradient-to-br from-white/30 to-transparent rounded-full"></div>
         
-        {/* Bochechas - Responsivas */}
+        {/* Bochechas */}
         <div className="absolute top-16 sm:top-20 md:top-24 left-4 sm:left-6 md:left-8 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-pink-400 rounded-full opacity-70 animate-pulse"></div>
         <div className="absolute top-16 sm:top-20 md:top-24 right-4 sm:right-6 md:right-8 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-pink-400 rounded-full opacity-70 animate-pulse"></div>
 
-        {/* Olhos - Responsivos com piscar */}
+        {/* Olhos */}
         <div className={cn(
           "absolute top-8 sm:top-12 md:top-14 left-1/2 transform -translate-x-1/2 text-lg sm:text-2xl md:text-3xl font-bold text-gray-700 tracking-wider transition-all duration-150",
           isBlinking && "scale-y-20"
@@ -172,28 +172,30 @@ const Lix: React.FC<LixProps> = ({ message, onMessageComplete }) => {
           {getEyeExpression()}
         </div>
 
-        {/* Boca - Responsiva */}
+        {/* Boca */}
         <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 transform -translate-x-1/2 text-base sm:text-xl md:text-2xl text-gray-700">
           {getMouthExpression()}
         </div>
 
-        {/* Cabelo melhorado - Base */}
-        <div className="absolute -top-1 sm:-top-2 md:-top-3 left-1/2 transform -translate-x-1/2 w-24 h-12 sm:w-32 sm:h-16 md:w-40 md:h-20 bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 rounded-t-full shadow-lg"></div>
+        {/* Cabelo melhorado - Formato que segue o círculo da cabeça */}
+        <div className="absolute -top-3 sm:-top-4 md:-top-5 left-1/2 transform -translate-x-1/2 w-36 h-20 sm:w-44 sm:h-24 md:w-56 md:h-30 bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 rounded-t-full shadow-lg" 
+             style={{ clipPath: 'ellipse(50% 70% at 50% 80%)' }}></div>
         
-        {/* Camadas do cabelo para mais volume */}
-        <div className="absolute -top-0.5 sm:-top-1 left-1/2 transform -translate-x-1/2 w-20 h-10 sm:w-28 sm:h-14 md:w-36 md:h-18 bg-gradient-to-br from-purple-300 to-purple-500 rounded-t-full opacity-80"></div>
+        {/* Camada adicional do cabelo para volume */}
+        <div className="absolute -top-2 sm:-top-3 md:-top-4 left-1/2 transform -translate-x-1/2 w-32 h-16 sm:w-40 sm:h-20 md:w-52 md:h-26 bg-gradient-to-br from-purple-300 to-purple-500 rounded-t-full opacity-80"
+             style={{ clipPath: 'ellipse(45% 65% at 50% 85%)' }}></div>
         
-        {/* Mechas laterais do cabelo */}
-        <div className="absolute -top-0.5 sm:-top-1 left-1/2 transform -translate-x-1/2 translate-x-3 sm:translate-x-4 w-4 h-8 sm:w-5 sm:h-10 md:w-6 md:h-12 bg-purple-300 rounded-full opacity-80 rotate-12"></div>
-        <div className="absolute -top-0.5 sm:-top-1 left-1/2 transform -translate-x-1/2 -translate-x-3 sm:-translate-x-4 w-3 h-6 sm:w-4 sm:h-8 md:w-5 md:h-10 bg-purple-300 rounded-full opacity-80 -rotate-12"></div>
+        {/* Mechas laterais */}
+        <div className="absolute -top-1 sm:-top-2 left-1/2 transform -translate-x-1/2 translate-x-4 sm:translate-x-6 md:translate-x-8 w-4 h-8 sm:w-5 sm:h-10 md:w-6 md:h-12 bg-purple-400 rounded-full opacity-80 rotate-15"></div>
+        <div className="absolute -top-1 sm:-top-2 left-1/2 transform -translate-x-1/2 -translate-x-4 sm:-translate-x-6 md:-translate-x-8 w-4 h-8 sm:w-5 sm:h-10 md:w-6 md:h-12 bg-purple-400 rounded-full opacity-80 -rotate-15"></div>
         
-        {/* Franjas */}
-        <div className="absolute top-1 sm:top-2 left-1/2 transform -translate-x-1/2 -translate-x-2 w-2 h-4 sm:w-3 sm:h-5 md:w-4 md:h-6 bg-purple-400 rounded-full opacity-90"></div>
-        <div className="absolute top-1 sm:top-2 left-1/2 transform -translate-x-1/2 w-2 h-5 sm:w-3 sm:h-6 md:w-4 md:h-7 bg-purple-400 rounded-full opacity-90"></div>
-        <div className="absolute top-1 sm:top-2 left-1/2 transform -translate-x-1/2 translate-x-2 w-2 h-4 sm:w-3 sm:h-5 md:w-4 md:h-6 bg-purple-400 rounded-full opacity-90"></div>
+        {/* Franjas centrais */}
+        <div className="absolute top-0 sm:top-1 left-1/2 transform -translate-x-1/2 -translate-x-3 w-2 h-5 sm:w-3 sm:h-6 md:w-4 md:h-7 bg-purple-500 rounded-full opacity-90"></div>
+        <div className="absolute top-0 sm:top-1 left-1/2 transform -translate-x-1/2 w-2 h-6 sm:w-3 sm:h-7 md:w-4 md:h-8 bg-purple-500 rounded-full opacity-90"></div>
+        <div className="absolute top-0 sm:top-1 left-1/2 transform -translate-x-1/2 translate-x-3 w-2 h-5 sm:w-3 sm:h-6 md:w-4 md:h-7 bg-purple-500 rounded-full opacity-90"></div>
         
-        {/* Laço no cabelo melhorado */}
-        <div className="absolute top-0 sm:-top-1 left-1/2 transform -translate-x-1/2 translate-x-6 sm:translate-x-8 md:translate-x-10">
+        {/* Laço no cabelo */}
+        <div className="absolute -top-1 sm:-top-2 left-1/2 transform -translate-x-1/2 translate-x-8 sm:translate-x-10 md:translate-x-12">
           <div className="relative">
             <div className="w-6 h-4 sm:w-8 sm:h-6 md:w-10 md:h-8 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full shadow-md transform rotate-12"></div>
             <div className="absolute inset-1 bg-gradient-to-br from-yellow-300 to-yellow-400 rounded-full"></div>
@@ -202,10 +204,10 @@ const Lix: React.FC<LixProps> = ({ message, onMessageComplete }) => {
         </div>
 
         {/* Brilhos no cabelo */}
-        <div className="absolute top-2 sm:top-3 left-1/2 transform -translate-x-1/2 -translate-x-1 w-2 h-2 sm:w-3 sm:h-3 bg-white/30 rounded-full blur-sm"></div>
-        <div className="absolute top-3 sm:top-4 left-1/2 transform -translate-x-1/2 translate-x-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/20 rounded-full blur-sm"></div>
+        <div className="absolute top-1 sm:top-2 left-1/2 transform -translate-x-1/2 -translate-x-2 w-2 h-2 sm:w-3 sm:h-3 bg-white/30 rounded-full blur-sm"></div>
+        <div className="absolute top-2 sm:top-3 left-1/2 transform -translate-x-1/2 translate-x-3 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/20 rounded-full blur-sm"></div>
 
-        {/* Reflexo de luz */}
+        {/* Reflexo de luz no corpo */}
         <div className="absolute top-2 sm:top-4 left-2 sm:left-4 w-4 h-4 sm:w-6 sm:h-6 bg-white/40 rounded-full blur-sm"></div>
       </div>
 
