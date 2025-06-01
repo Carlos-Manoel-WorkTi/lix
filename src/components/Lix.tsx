@@ -127,7 +127,7 @@ const Lix: React.FC<LixProps> = ({ message, onMessageComplete }) => {
       <div className="absolute -bottom-1 sm:-bottom-2 -left-3 sm:-left-6 w-2 h-2 sm:w-4 sm:h-4 bg-purple-300 rounded-full animate-ping opacity-60" style={{ animationDelay: '1s' }}></div>
       <div className="absolute top-4 sm:top-8 -right-1 sm:-right-2 w-3 h-3 sm:w-5 sm:h-5 bg-blue-300 rounded-full animate-bounce opacity-50" style={{ animationDelay: '1.5s' }}></div>
 
-      {/* Corpo da Lix - Melhorado e responsivo */}
+      {/* Corpo da Lix - Mais redondo e sem braços/pernas */}
       <div 
         onClick={handleLixClick}
         className={cn(
@@ -177,32 +177,6 @@ const Lix: React.FC<LixProps> = ({ message, onMessageComplete }) => {
 
         {/* Reflexo de luz */}
         <div className="absolute top-2 sm:top-4 left-2 sm:left-4 w-4 h-4 sm:w-6 sm:h-6 bg-white/40 rounded-full blur-sm"></div>
-      </div>
-
-      {/* Braços melhorados - Responsivos */}
-      <div className={cn(
-        "absolute top-16 sm:top-24 md:top-28 -left-6 sm:-left-8 md:-left-10 w-8 h-6 sm:w-12 sm:h-8 md:w-14 md:h-10 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full transform transition-transform duration-300 shadow-lg",
-        isAnimating && "rotate-12",
-        currentMovement === 'happy' && "rotate-45",
-        currentMovement === 'excited' && "-rotate-12"
-      )}></div>
-      <div className={cn(
-        "absolute top-16 sm:top-24 md:top-28 -right-6 sm:-right-8 md:-right-10 w-8 h-6 sm:w-12 sm:h-8 md:w-14 md:h-10 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full transform transition-transform duration-300 shadow-lg",
-        isAnimating && "-rotate-12",
-        currentMovement === 'happy' && "-rotate-45",
-        currentMovement === 'excited' && "rotate-12"
-      )}></div>
-
-      {/* Pernas melhoradas - Responsivas */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8 sm:translate-y-10 md:translate-y-12 flex gap-2 sm:gap-4">
-        <div className="w-6 h-8 sm:w-8 sm:h-12 md:w-10 md:h-14 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full shadow-lg"></div>
-        <div className="w-6 h-8 sm:w-8 sm:h-12 md:w-10 md:h-14 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full shadow-lg"></div>
-      </div>
-
-      {/* Sapatinhos */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-14 sm:translate-y-20 md:translate-y-24 flex gap-2 sm:gap-4">
-        <div className="w-4 h-2 sm:w-6 sm:h-3 md:w-8 md:h-4 bg-purple-500 rounded-full shadow-md"></div>
-        <div className="w-4 h-2 sm:w-6 sm:h-3 md:w-8 md:h-4 bg-purple-500 rounded-full shadow-md"></div>
       </div>
 
       {/* Contador de cliques */}
